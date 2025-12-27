@@ -22,7 +22,27 @@ A minimal and powerful web application built with **Streamlit** and **yt-dlp** t
    pip install -r requirements.txt
    ```
 
-   *Note: This project requires `ffmpeg` to be installed on your system for video merging/conversion capabilities.*
+3. **Install ffmpeg** (required for merging video and audio streams):
+   
+   **macOS:**
+   ```bash
+   brew install ffmpeg
+   ```
+   
+   **Ubuntu/Debian:**
+   ```bash
+   sudo apt update
+   sudo apt install ffmpeg
+   ```
+   
+   **Windows:**
+   - Download from [ffmpeg.org](https://ffmpeg.org/download.html)
+   - Or use [Chocolatey](https://chocolatey.org/): `choco install ffmpeg`
+   
+   **Verify installation:**
+   ```bash
+   ffmpeg -version
+   ```
 
 ## Usage
 
