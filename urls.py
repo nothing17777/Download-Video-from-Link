@@ -3,16 +3,20 @@ import tempfile
 import os
 
 ydl_opts = {
-    'format': 'bestvideo+bestaudio/best',
+    'format': 'best[ext=mp4]/best',  # Prefer single-file formats to avoid merging issues
     'outtmpl': '%(title)s.%(ext)s',
     'sleep_interval': 1,
     'merge_output_format': 'mp4',
     'quiet': True,
     'noplaylist': True,
-    "quiet": True,
-    "no_warnings": True,
+    'no_warnings': True,
+    'nocheckcertificate': True,  # Bypass SSL certificate verification
+    'geo_bypass': True,  # Try to bypass geographic restrictions
     'http_headers': {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'Accept-Language': 'en-us,en;q=0.5',
+        'Sec-Fetch-Mode': 'navigate',
     }
 }
 
