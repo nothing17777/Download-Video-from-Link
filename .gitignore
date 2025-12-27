@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Mac
+.DS_Store
+
+# Environments
+venv/
+env/
+
+# Streamlit
+.streamlit/
+
+# Local/Temp files
+*.mp4
+*.mkv
+*.webm
+temp/
+output/
