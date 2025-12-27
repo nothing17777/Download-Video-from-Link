@@ -10,7 +10,10 @@ ydl_opts = {
     'quiet': True,
     'noplaylist': True,
     "quiet": True,
-    "no_warnings": True
+    "no_warnings": True,
+    'http_headers': {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+    }
 }
 
 def preview_video_based_on_url(url):

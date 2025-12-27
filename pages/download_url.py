@@ -27,7 +27,7 @@ with st.container(border=True):
     with col1:
         url = st.text_input("URL")
     with col2:
-        if st.button("Load Video Data", use_container_width=True):
+        if st.button("Load Video Data", width="stretch"):
             if url:
                 with st.spinner("Fetching video info..."):
                     try:
@@ -92,7 +92,7 @@ if st.session_state.video_info:
             with st.container(border=True):
                 st.write("**Thumbnail**")
                 if thumbnail:
-                    st.image(thumbnail, use_container_width=True)
+                    st.image(thumbnail, width="stretch")
             
             # Details
             with st.container(border=True):
@@ -137,11 +137,11 @@ if st.session_state.video_info:
                             data=st.session_state.video_data,
                             file_name=st.session_state.filename,
                             mime="video/mp4",
-                            use_container_width=True
+                            width="stretch"
                         )
                 
                 # Reset button
-                if st.button("Start New Download", use_container_width=True):
+                if st.button("Start New Download", width="stretch"):
                     st.session_state.video_data = None
                     st.session_state.filename = None
                     st.session_state.video_info = None
