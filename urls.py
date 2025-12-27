@@ -57,23 +57,54 @@ def download_video_based_on_url(url):
             ydl_opts_temp = {
                 **ydl_opts,  # Keep your existing options
                 'outtmpl': os.path.join(temp_dir, '%(title)s.%(ext)s'),
+                'quiet': False,  # Enable output for debugging
+                'verbose': True,  # More detailed output
             }
             
             with yt_dlp.YoutubeDL(ydl_opts_temp) as ydl:
                 # Get video info and download
+                print(f"Attempting to download: {url}")
                 info = ydl.extract_info(url, download=True)
+                
+                if not info:
+                    print("Failed to extract video info")
+                    return None, None
                 
                 # Get the filename that was created
                 filename = ydl.prepare_filename(info)
+                print(f"Expected filename: {filename}")
+                
+                # Check if file exists
+                if not os.path.exists(filename):
+                    print(f"File not found at: {filename}")
+                    # Try to find any file in the temp directory
+                    files = os.listdir(temp_dir)
+                    print(f"Files in temp dir: {files}")
+                    if files:
+                        filename = os.path.join(temp_dir, files[0])
+                    else:
+                        return None, None
+                
+                # Check file size
+                file_size = os.path.getsize(filename)
+                print(f"File size: {file_size} bytes")
+                
+                if file_size == 0:
+                    print("ERROR: Downloaded file is empty")
+                    return None, None
                 
                 # Read the file as bytes
                 with open(filename, 'rb') as f:
                     video_bytes = f.read()
                 
+                print(f"Successfully read {len(video_bytes)} bytes")
+                
                 # Return bytes and the original filename
                 return video_bytes, os.path.basename(filename)      
     except Exception as e:
         print(f"Error downloading: {e}")
+        import traceback
+        traceback.print_exc()
         return None, None
 
 if __name__ == "__main__":
